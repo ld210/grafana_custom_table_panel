@@ -1,7 +1,7 @@
 {
-  "name": "clock-panel",
+  "name": "bidder-panel",
   "version": "1.0.0",
-  "description": "Clock Panel Plugin for Grafana",
+  "description": "Bidder Table Panel Plugin for Tradelab's Grafana",
   "main": "src/module.js",
   "scripts": {
     "build": "node --max-old-space-size=8192 ./node_modules/.bin/webpack --config webpack.config.prod.js",
@@ -10,12 +10,12 @@
     "test": "jest --config jest.config.js"
   },
   "keywords": [
-    "clock",
+    "table",
     "grafana",
     "plugin",
     "panel"
   ],
-  "author": "Raintank",
+  "author": "LD210",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.1.6",
