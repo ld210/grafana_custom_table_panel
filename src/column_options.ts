@@ -62,7 +62,11 @@ export class ColumnOptionsCtrl {
   }
 
   setUnitFormat(column, subItem) {
+    console.log('set unit format:', {column, subItem});
     column.unit = subItem.value;
+    if (subItem.value === 'percentunit') {
+      column.display = 'val';
+    }
     this.panelCtrl.render();
   }
 
@@ -148,7 +152,7 @@ export function columnOptionsTab($q, uiSegmentSrv) {
   return {
     restrict: 'E',
     scope: true,
-    templateUrl: 'public/app/plugins/panel/table/column_options.html',
+    templateUrl: 'public/plugins/tradelab-bidder-table/column_options.html',
     controller: ColumnOptionsCtrl,
   };
 }

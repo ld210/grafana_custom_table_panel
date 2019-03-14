@@ -110,6 +110,7 @@ export class TableRenderer {
         if (this.isUtc) {
           date = date.utc();
         }
+        column.style.rawValue = v;
         return date.format(column.style.dateFormat);
       };
     }
@@ -172,6 +173,7 @@ export class TableRenderer {
       const valueFormatter = getValueFormat(column.unit || column.style.unit);
 
       return v => {
+        column.style.rawValue = v;
         if (v === null || v === void 0) {
           return '-';
         }
@@ -186,6 +188,7 @@ export class TableRenderer {
     }
 
     return value => {
+      column.style.rawValue = value;
       return this.defaultCellFormatter(value, column.style);
     };
   }
@@ -299,7 +302,17 @@ export class TableRenderer {
       cellClass = ' class="' + cellClasses.join(' ') + '"';
     }
 
-    columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
+    if (column.style && column.style.display === 'progressbar') {
+      const color = this.getColorForValue(Number(column.style.rawValue), column.style);
+      const pbarStyle = `display:block;width:${value};max-width:100%;height:100%;padding:5px 0;background-color:${color}`;
+
+      columnHtml = `
+      <td style="padding:0;background-color:#212124;">
+        <div style="${pbarStyle}">${value}</div>
+      </td>`;
+    } else {
+      columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
+    }
     return columnHtml;
   }
 

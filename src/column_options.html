@@ -1,3 +1,4 @@
+
 <div class="edit-tab-content" ng-repeat="style in editor.panel.styles">
   <div class="section gf-form-group">
     <h5 class="section-heading">Options</h5>
@@ -50,6 +51,15 @@
         <label class="gf-form-label width-10">Decimals</label>
         <input type="number" class="gf-form-input width-4" data-placement="right" ng-model="style.decimals" ng-change="editor.render()"
             ng-model-onblur>
+      </div>
+      <div class="gf-form" ng-if="style.unit === 'percentunit'">
+        <label class="gf-form-label width-10">Display mode</label>
+        <div class="gf-form-select-wrapper width-16">
+          <select class="gf-form-input" ng-model="style.display" ng-change="editor.render()">
+            <option value="progressbar">Progresse Bar</option>
+            <option value="val">Value</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
