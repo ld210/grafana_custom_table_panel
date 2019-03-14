@@ -31,6 +31,7 @@ export class ColumnOptionsCtrl {
     ];
     this.columnTypes = [
       { text: 'Number', value: 'number' },
+      { text: 'Delta', value: 'delta' },
       { text: 'String', value: 'string' },
       { text: 'Date', value: 'date' },
       { text: 'Hidden', value: 'hidden' },
@@ -62,7 +63,6 @@ export class ColumnOptionsCtrl {
   }
 
   setUnitFormat(column, subItem) {
-    console.log('set unit format:', {column, subItem});
     column.unit = subItem.value;
     if (subItem.value === 'percentunit') {
       column.display = 'val';

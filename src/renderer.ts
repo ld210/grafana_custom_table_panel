@@ -302,6 +302,22 @@ export class TableRenderer {
       cellClass = ' class="' + cellClasses.join(' ') + '"';
     }
 
+    if (column.style && column.style.type === 'delta') {
+      const num = Number(column.style.rawValue);
+      const icon = num > 0 ? 'up' : num < 0 ? 'down' : undefined;
+      const colors = column.style.colors;
+      const color = icon === 'up' ? colors[colors.length - 1] : icon === 'down' ? colors[0] : '#ffffff';
+
+      const html = `
+        <div class="arrow-container" style="display:block;width:25px;height:25px;color:${color};font-size:20px;line-height:25px;">
+          <i class="grafana-tip fa fa-arrow-${icon}" bs-tooltip="${value}" data-original-title title="${value}"></i>
+          <span class="bidder-tooltip">${value}</span>
+        </div>
+      `;
+
+      columnHtml = icon ? html : '-';
+    }
+
     if (column.style && column.style.display === 'progressbar') {
       const color = this.getColorForValue(Number(column.style.rawValue), column.style);
       const pbarStyle = `display:block;width:${value};max-width:100%;height:100%;padding:5px 0;background-color:${color}`;

@@ -42,6 +42,7 @@ module.exports = {
       { from: '../LICENSE', to: '.' },
       { from: '*.html', to: '.' },
       { from: 'img/*', to: '.' },
+      { from: '*.css', to: '.' }
     ]),
   ],
   resolve: {

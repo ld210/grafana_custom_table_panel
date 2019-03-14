@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import $ from 'jquery';
-import { MetricsPanelCtrl } from 'grafana/app/plugins/sdk';
+import { MetricsPanelCtrl, loadPluginCss } from 'grafana/app/plugins/sdk';
 import config from 'grafana/app/core/config';
 import { transformDataToTable } from './transformers';
 import { tablePanelEditor } from './editor';
@@ -268,5 +268,8 @@ class TablePanelCtrl extends MetricsPanelCtrl {
     });
   }
 }
-
+loadPluginCss({
+  dark: 'plugins/tradelab-bidder-table/bidder-panel.css',
+  light: 'plugins/tradelab-bidder-table/bidder-panel.css'
+});
 export { TablePanelCtrl, TablePanelCtrl as PanelCtrl };
