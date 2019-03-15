@@ -1,0 +1,22 @@
+.arrow-container {
+  position: relative;
+}
+
+.arrow-container span.bidder-tooltip {
+  display:block;
+  opacity: 0;
+  position: absolute;
+  top: -15px;
+  right: -45px;
+  background-color:#161719;
+  color: #ccc;
+  font-weight:600;
+  font-size:12px;
+  line-height: normal;
+  padding: 2px 5px;
+  border-radius: 3px;
+  transition: visibility .250s linear;
+}
+.arrow-container:hover span.bidder-tooltip {
+  opacity: 1;
+}
