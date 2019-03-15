@@ -324,7 +324,7 @@ export class TableRenderer {
 
       columnHtml = `
       <td style="padding:0;background-color:#212124;">
-        <div style="${pbarStyle}">${value}</div>
+        <div style="${pbarStyle}"><span style="padding-left:15px;">${value}</span></div>
       </td>`;
     } else {
       columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';

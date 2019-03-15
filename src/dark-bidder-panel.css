@@ -20,3 +20,18 @@
 .arrow-container:hover span.bidder-tooltip {
   opacity: 1;
 }
+
+div.table-panel-container {
+  padding-top: 0;
+}
+
+thead.table-panel-header {
+  background: linear-gradient(135deg, #2f2f32, #262628);
+  border-top: 2px solid #161719;
+  border-bottom: 2px solid #161719;
+  height: 2em;
+}
+
+thead.table-panel-header tr th div.table-panel-table-header-inner.pointer {
+  position: static;
+}
