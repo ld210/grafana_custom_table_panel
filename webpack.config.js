@@ -25,6 +25,7 @@ module.exports = {
     'jquery',
     'lodash',
     'moment',
+    '@grafana/ui',
     function (context, request, callback) {
       var prefix = 'grafana/';
       if (request.indexOf(prefix) === 0) {
@@ -42,10 +43,11 @@ module.exports = {
       { from: '../LICENSE', to: '.' },
       { from: '*.html', to: '.' },
       { from: 'img/*', to: '.' },
+      { from: 'styles', to: 'styles' }
     ]),
   ],
   resolve: {
-    extensions: ['.js', '.ts', 'jsx', 'tsx'],
+    extensions: ['.js', '.ts', 'jsx', 'tsx', 'css', 'svg'],
   },
   module: {
     rules: [
@@ -75,6 +77,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
     ],
   },
 };

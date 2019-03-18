@@ -110,6 +110,7 @@ export class TableRenderer {
         if (this.isUtc) {
           date = date.utc();
         }
+        column.style.rawValue = v;
         return date.format(column.style.dateFormat);
       };
     }
@@ -172,6 +173,7 @@ export class TableRenderer {
       const valueFormatter = getValueFormat(column.unit || column.style.unit);
 
       return v => {
+        column.style.rawValue = v;
         if (v === null || v === void 0) {
           return '-';
         }
@@ -186,6 +188,7 @@ export class TableRenderer {
     }
 
     return value => {
+      column.style.rawValue = value;
       return this.defaultCellFormatter(value, column.style);
     };
   }
@@ -299,7 +302,38 @@ export class TableRenderer {
       cellClass = ' class="' + cellClasses.join(' ') + '"';
     }
 
-    columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
+    if (column.style && column.style.type === 'flags') {
+      const code = column.style.rawValue.toLowerCase();
+      columnHtml = column.style.display === 'flagicon' ? `<span class="flag-icon flag-icon-${code}"></span>` : value;
+    }
+
+    if (column.style && column.style.display === 'delta') {
+      const num = Number(column.style.rawValue);
+      const icon = num > 0 ? 'up' : num < 0 ? 'down' : undefined;
+      const colors = column.style.colors;
+      const color = icon === 'up' ? colors[colors.length - 1] : icon === 'down' ? colors[0] : '#ffffff';
+
+      const html = `
+        <div class="arrow-container" style="display:block;width:25px;height:25px;color:${color};font-size:20px;line-height:25px;">
+          <i class="grafana-tip fa fa-arrow-${icon}"></i>
+          <span class="bidder-tooltip">${value}</span>
+        </div>
+      `;
+
+      columnHtml = icon ? html : '-';
+    }
+
+    if (column.style && column.style.display === 'progressbar') {
+      const color = this.getColorForValue(Number(column.style.rawValue), column.style);
+      const pbarStyle = `display:block;width:${value};max-width:100%;height:100%;padding:5px 0;background-color:${color}`;
+
+      columnHtml = `
+      <td style="padding:0;background-color:#212124;">
+        <div style="${pbarStyle}"><span style="padding-left:15px;">${value}</span></div>
+      </td>`;
+    } else {
+      columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
+    }
     return columnHtml;
   }
 
