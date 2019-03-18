@@ -4,7 +4,16 @@ This panel is a fork of the original Grafana table panel, for customisation.
 
 ### Plugin options
 
-Same as the original
+Same as the original with some options added :
+
+1. Add a display option to column type Number.
+    The display option has 3 modes:
+      - `Value` : display the value with the desired format, just like usual, nothing change.
+      - `Progress Bar`: display the value on top of a progress bar, when unit is `percent`
+      - 'Delta`: display an arrow up for positive numbers, and an arrow down for negative numbers. Original value is displayed in a tooltip on hover. A possible feature is to add a threshold support to this option.
+1. Add a new type `Country code`, with a display mode option:
+  - `Value`: display original value
+  - `Flag icon`: display a flag icon (svg format). For this feature to works, the country code must be [ISO 3166-1-alpha-2](https://www.iso.org/obp/ui/#search/code/)
 
 ### Install
 
