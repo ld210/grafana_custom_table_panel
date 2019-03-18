@@ -12,8 +12,8 @@ Same as the original with some options added :
       - `Delta`: display an arrow up for positive numbers, and an arrow down for negative numbers. Original value is displayed in a tooltip on hover. A possible feature is to add a threshold support to this option.
 
 1. Add a new type `Country code`, with a display mode option:
-  - `Value`: display original value
-  - `Flag icon`: display a flag icon (svg format). For this feature to works, the country code must be [ISO 3166-1-alpha-2](https://www.iso.org/obp/ui/#search/code/)
+      - `Value`: display original value
+      - `Flag icon`: display a flag icon (svg format). For this feature to works, the country code must be [ISO 3166-1-alpha-2](https://www.iso.org/obp/ui/#search/code/)
 
 ### Install
 
