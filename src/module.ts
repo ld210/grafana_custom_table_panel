@@ -269,7 +269,7 @@ class TablePanelCtrl extends MetricsPanelCtrl {
   }
 }
 loadPluginCss({
-  dark: 'plugins/tradelab-bidder-table/dark-bidder-panel.css',
-  light: 'plugins/tradelab-bidder-table/light-bidder-panel.css'
+  dark: 'plugins/tradelab-bidder-table/styles/dark-bidder-panel.css',
+  light: 'plugins/tradelab-bidder-table/styles/light-bidder-panel.css'
 });
 export { TablePanelCtrl, TablePanelCtrl as PanelCtrl };

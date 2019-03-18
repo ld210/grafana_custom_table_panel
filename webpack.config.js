@@ -43,11 +43,11 @@ module.exports = {
       { from: '../LICENSE', to: '.' },
       { from: '*.html', to: '.' },
       { from: 'img/*', to: '.' },
-      { from: '*.css', to: '.' }
+      { from: 'styles', to: 'styles' }
     ]),
   ],
   resolve: {
-    extensions: ['.js', '.ts', 'jsx', 'tsx'],
+    extensions: ['.js', '.ts', 'jsx', 'tsx', 'css', 'svg'],
   },
   module: {
     rules: [
@@ -77,6 +77,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
     ],
   },
 };

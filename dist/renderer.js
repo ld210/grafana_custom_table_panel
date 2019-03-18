@@ -422,12 +422,17 @@ function () {
       cellClass = ' class="' + cellClasses.join(' ') + '"';
     }
 
-    if (column.style && column.style.type === 'delta') {
+    if (column.style && column.style.type === 'flags') {
+      var code = column.style.rawValue.toLowerCase();
+      columnHtml = column.style.display === 'flagicon' ? "<span class=\"flag-icon flag-icon-" + code + "\"></span>" : value;
+    }
+
+    if (column.style && column.style.display === 'delta') {
       var num = Number(column.style.rawValue);
       var icon = num > 0 ? 'up' : num < 0 ? 'down' : undefined;
       var colors = column.style.colors;
       var color = icon === 'up' ? colors[colors.length - 1] : icon === 'down' ? colors[0] : '#ffffff';
-      var html = "\n        <div class=\"arrow-container\" style=\"display:block;width:25px;height:25px;color:" + color + ";font-size:20px;line-height:25px;\">\n          <i class=\"grafana-tip fa fa-arrow-" + icon + "\" bs-tooltip=\"" + value + "\" data-original-title title=\"" + value + "\"></i>\n          <span class=\"bidder-tooltip\">" + value + "</span>\n        </div>\n      ";
+      var html = "\n        <div class=\"arrow-container\" style=\"display:block;width:25px;height:25px;color:" + color + ";font-size:20px;line-height:25px;\">\n          <i class=\"grafana-tip fa fa-arrow-" + icon + "\"></i>\n          <span class=\"bidder-tooltip\">" + value + "</span>\n        </div>\n      ";
       columnHtml = icon ? html : '-';
     }
 

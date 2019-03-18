@@ -302,7 +302,12 @@ export class TableRenderer {
       cellClass = ' class="' + cellClasses.join(' ') + '"';
     }
 
-    if (column.style && column.style.type === 'delta') {
+    if (column.style && column.style.type === 'flags') {
+      const code = column.style.rawValue.toLowerCase();
+      columnHtml = column.style.display === 'flagicon' ? `<span class="flag-icon flag-icon-${code}"></span>` : value;
+    }
+
+    if (column.style && column.style.display === 'delta') {
       const num = Number(column.style.rawValue);
       const icon = num > 0 ? 'up' : num < 0 ? 'down' : undefined;
       const colors = column.style.colors;
@@ -310,7 +315,7 @@ export class TableRenderer {
 
       const html = `
         <div class="arrow-container" style="display:block;width:25px;height:25px;color:${color};font-size:20px;line-height:25px;">
-          <i class="grafana-tip fa fa-arrow-${icon}" bs-tooltip="${value}" data-original-title title="${value}"></i>
+          <i class="grafana-tip fa fa-arrow-${icon}"></i>
           <span class="bidder-tooltip">${value}</span>
         </div>
       `;

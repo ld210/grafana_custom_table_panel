@@ -139,17 +139,34 @@ function () {
       text: 'Number',
       value: 'number'
     }, {
-      text: 'Delta',
-      value: 'delta'
-    }, {
       text: 'String',
       value: 'string'
+    }, {
+      text: 'Country code',
+      value: 'flags'
     }, {
       text: 'Date',
       value: 'date'
     }, {
       text: 'Hidden',
       value: 'hidden'
+    }];
+    this.displayOptions = [{
+      text: 'Value',
+      value: 'val'
+    }, {
+      text: 'Progress Bar',
+      value: 'progressbar'
+    }, {
+      text: 'Delta',
+      value: 'delta'
+    }];
+    this.countryDisplayOptions = [{
+      text: 'ISO Code',
+      value: 'iso'
+    }, {
+      text: 'Flag icon',
+      value: 'flagicon'
     }];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [{
@@ -195,11 +212,6 @@ function () {
 
   ColumnOptionsCtrl.prototype.setUnitFormat = function (column, subItem) {
     column.unit = subItem.value;
-
-    if (subItem.value === 'percentunit') {
-      column.display = 'val';
-    }
-
     this.panelCtrl.render();
   };
 
@@ -214,7 +226,8 @@ function () {
       pattern: '',
       dateFormat: 'YYYY-MM-DD HH:mm:ss',
       thresholds: [],
-      mappingType: 1
+      mappingType: 1,
+      display: 'val'
     };
     var styles = this.panel.styles;
     var stylesCount = styles.length;

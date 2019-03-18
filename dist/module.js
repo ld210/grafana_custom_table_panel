@@ -139,17 +139,34 @@ function () {
       text: 'Number',
       value: 'number'
     }, {
-      text: 'Delta',
-      value: 'delta'
-    }, {
       text: 'String',
       value: 'string'
+    }, {
+      text: 'Country code',
+      value: 'flags'
     }, {
       text: 'Date',
       value: 'date'
     }, {
       text: 'Hidden',
       value: 'hidden'
+    }];
+    this.displayOptions = [{
+      text: 'Value',
+      value: 'val'
+    }, {
+      text: 'Progress Bar',
+      value: 'progressbar'
+    }, {
+      text: 'Delta',
+      value: 'delta'
+    }];
+    this.countryDisplayOptions = [{
+      text: 'ISO Code',
+      value: 'iso'
+    }, {
+      text: 'Flag icon',
+      value: 'flagicon'
     }];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [{
@@ -195,11 +212,6 @@ function () {
 
   ColumnOptionsCtrl.prototype.setUnitFormat = function (column, subItem) {
     column.unit = subItem.value;
-
-    if (subItem.value === 'percentunit') {
-      column.display = 'val';
-    }
-
     this.panelCtrl.render();
   };
 
@@ -214,7 +226,8 @@ function () {
       pattern: '',
       dateFormat: 'YYYY-MM-DD HH:mm:ss',
       thresholds: [],
-      mappingType: 1
+      mappingType: 1,
+      display: 'val'
     };
     var styles = this.panel.styles;
     var stylesCount = styles.length;
@@ -777,8 +790,8 @@ function (_super) {
 }(_sdk.MetricsPanelCtrl);
 
 (0, _sdk.loadPluginCss)({
-  dark: 'plugins/tradelab-bidder-table/dark-bidder-panel.css',
-  light: 'plugins/tradelab-bidder-table/light-bidder-panel.css'
+  dark: 'plugins/tradelab-bidder-table/styles/dark-bidder-panel.css',
+  light: 'plugins/tradelab-bidder-table/styles/light-bidder-panel.css'
 });
 exports.TablePanelCtrl = TablePanelCtrl;
 exports.PanelCtrl = TablePanelCtrl;
@@ -1121,12 +1134,17 @@ function () {
       cellClass = ' class="' + cellClasses.join(' ') + '"';
     }
 
-    if (column.style && column.style.type === 'delta') {
+    if (column.style && column.style.type === 'flags') {
+      var code = column.style.rawValue.toLowerCase();
+      columnHtml = column.style.display === 'flagicon' ? "<span class=\"flag-icon flag-icon-" + code + "\"></span>" : value;
+    }
+
+    if (column.style && column.style.display === 'delta') {
       var num = Number(column.style.rawValue);
       var icon = num > 0 ? 'up' : num < 0 ? 'down' : undefined;
       var colors = column.style.colors;
       var color = icon === 'up' ? colors[colors.length - 1] : icon === 'down' ? colors[0] : '#ffffff';
-      var html = "\n        <div class=\"arrow-container\" style=\"display:block;width:25px;height:25px;color:" + color + ";font-size:20px;line-height:25px;\">\n          <i class=\"grafana-tip fa fa-arrow-" + icon + "\" bs-tooltip=\"" + value + "\" data-original-title title=\"" + value + "\"></i>\n          <span class=\"bidder-tooltip\">" + value + "</span>\n        </div>\n      ";
+      var html = "\n        <div class=\"arrow-container\" style=\"display:block;width:25px;height:25px;color:" + color + ";font-size:20px;line-height:25px;\">\n          <i class=\"grafana-tip fa fa-arrow-" + icon + "\"></i>\n          <span class=\"bidder-tooltip\">" + value + "</span>\n        </div>\n      ";
       columnHtml = icon ? html : '-';
     }
 

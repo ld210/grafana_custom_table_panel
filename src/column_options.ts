@@ -7,6 +7,8 @@ export class ColumnOptionsCtrl {
   colorModes: any;
   columnStyles: any;
   columnTypes: any;
+  displayOptions: any;
+  countryDisplayOptions: any;
   fontSizes: any;
   dateFormats: any;
   addColumnSegment: any;
@@ -31,10 +33,19 @@ export class ColumnOptionsCtrl {
     ];
     this.columnTypes = [
       { text: 'Number', value: 'number' },
-      { text: 'Delta', value: 'delta' },
       { text: 'String', value: 'string' },
+      { text: 'Country code', value: 'flags'},
       { text: 'Date', value: 'date' },
       { text: 'Hidden', value: 'hidden' },
+    ];
+    this.displayOptions = [
+      { text: 'Value', value: 'val' },
+      { text: 'Progress Bar', value: 'progressbar' },
+      { text: 'Delta', value: 'delta' }
+    ];
+    this.countryDisplayOptions = [
+      { text: 'ISO Code', value: 'iso' },
+      { text: 'Flag icon', value: 'flagicon' }
     ];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [
@@ -64,9 +75,6 @@ export class ColumnOptionsCtrl {
 
   setUnitFormat(column, subItem) {
     column.unit = subItem.value;
-    if (subItem.value === 'percentunit') {
-      column.display = 'val';
-    }
     this.panelCtrl.render();
   }
 
@@ -82,6 +90,7 @@ export class ColumnOptionsCtrl {
       dateFormat: 'YYYY-MM-DD HH:mm:ss',
       thresholds: [],
       mappingType: 1,
+      display: 'val'
     };
 
     const styles = this.panel.styles;

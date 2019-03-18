@@ -52,16 +52,29 @@
         <input type="number" class="gf-form-input width-4" data-placement="right" ng-model="style.decimals" ng-change="editor.render()"
             ng-model-onblur>
       </div>
-      <div class="gf-form" ng-if="style.unit === 'percentunit'">
+      <div class="gf-form">
         <label class="gf-form-label width-10">Display mode</label>
         <div class="gf-form-select-wrapper width-16">
-          <select class="gf-form-input" ng-model="style.display" ng-change="editor.render()">
-            <option value="progressbar">Progresse Bar</option>
-            <option value="val">Value</option>
+          <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.displayOptions" ng-change="editor.render()">
+          </select>
+        </div>
+        <div class="gf-form-select-wrapper width-16" ng-if="style.type === 'flags'">
+          <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.countryDisplayOptions" ng-change="editor.render()">
           </select>
         </div>
       </div>
     </div>
+
+    <div ng-if="style.type === 'flags'">
+      <div class="gf-form">
+        <label class="gf-form-label width-10">Display mode</label>
+        <div class="gf-form-select-wrapper width-16">
+          <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.countryDisplayOptions" ng-change="editor.render()">
+          </select>
+        </div>
+      </div>
+    </div>
+    
   </div>
 
   <div class="section gf-form-group" ng-if="style.type === 'string'">
