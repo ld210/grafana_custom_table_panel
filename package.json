@@ -20,7 +20,7 @@
   "devDependencies": {
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
-    "@types/grafana": "https://git@github.com/CorpGlory/types-grafana.git",
+    "@types/grafana": "git+https://git@github.com/CorpGlory/types-grafana.git",
     "@types/jest": "^23.3.9",
     "@types/lodash": "^4.14.118",
     "@types/moment": "^2.13.0",
@@ -32,17 +32,19 @@
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
+    "grafana-sdk-mocks": "github:ryantxu/grafana-sdk-mocks",
     "jest": "^23.6.0",
     "ng-annotate-webpack-plugin": "^0.3.0",
     "style-loader": "^0.23.1",
+    "svg-inline-loader": "^0.8.0",
     "ts-jest": "^23.10.4",
     "ts-loader": "^5.3.0",
     "webpack": "^4.26.0",
-    "webpack-cli": "^3.1.2",
-    "grafana-sdk-mocks": "github:ryantxu/grafana-sdk-mocks"
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
     "@grafana/ui": "^6.0.1-alpha.0",
+    "flag-icon-css": "^3.3.0",
     "lodash": "^4.17.11",
     "moment": "^2.12.0",
     "typescript": "^3.2.0"

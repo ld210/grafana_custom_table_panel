@@ -1,0 +1,28 @@
+{
+  "type": "panel",
+  "name": "Bidder Table",
+  "id": "tradelab-bidder-table",
+
+  "info": {
+    "description": "Bidder Table for Tradelab's grafana",
+    "author": {
+      "name": "TradeLab",
+      "url": "https://tradelab.fr"
+    },
+    "keywords": ["table", "panel"],
+    "logos": {
+      "small": "img/icn-table-panel.png",
+      "large": "img/icn-table-panel.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/tradelab/tr_bidder_table"}
+    ],
+    "version": "1.0.0",
+    "updated": "11-03-2019"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "5.x.x",
+    "plugins": [ ]
+  }
+}
