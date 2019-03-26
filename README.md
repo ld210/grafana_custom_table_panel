@@ -14,6 +14,8 @@ Same as the original with some options added :
 1. Add a new type `Country code`, with a display mode option:
       - `Value`: display original value
       - `Flag icon`: display a flag icon (svg format). For this feature to works, the country code must be [ISO 3166-1-alpha-2](https://www.iso.org/obp/ui/#search/code/)
+      
+ 1. Add a `stealth` display option to type `string`
 
 ### Install
 
