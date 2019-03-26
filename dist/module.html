@@ -5,7 +5,7 @@
 		<table class="table-panel-table">
 			<thead class="table-panel-header">
 				<tr>
-					<th ng-repeat="col in ctrl.table.columns" ng-if="!col.hidden">
+					<th ng-repeat="col in ctrl.table.columns" ng-if="!col.hidden && col.style.display !== 'stealth'">
 						<div class="table-panel-table-header-inner pointer" ng-click="ctrl.toggleColumnSort(col, $index)">
 							{{col.title}}
 							<span class="table-panel-table-header-controls" ng-if="col.sort">
