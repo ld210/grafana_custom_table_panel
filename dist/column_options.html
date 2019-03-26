@@ -58,10 +58,6 @@
           <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.displayOptions" ng-change="editor.render()">
           </select>
         </div>
-        <div class="gf-form-select-wrapper width-16" ng-if="style.type === 'flags'">
-          <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.countryDisplayOptions" ng-change="editor.render()">
-          </select>
-        </div>
       </div>
     </div>
 
@@ -70,6 +66,16 @@
         <label class="gf-form-label width-10">Display mode</label>
         <div class="gf-form-select-wrapper width-16">
           <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.countryDisplayOptions" ng-change="editor.render()">
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="style.type === 'string'">
+      <div class="gf-form">
+        <label class="gf-form-label width-10">Display mode</label>
+        <div class="gf-form-select-wrapper width-16">
+          <select class="gf-form-input" ng-model="style.display" ng-options="d.value as d.text for d in editor.stringDisplayOptions" ng-change="editor.render()">
           </select>
         </div>
       </div>

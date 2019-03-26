@@ -160,6 +160,9 @@ function () {
     }, {
       text: 'Delta',
       value: 'delta'
+    }, {
+      text: 'Stealth mode',
+      value: 'stealth'
     }];
     this.countryDisplayOptions = [{
       text: 'ISO Code',
@@ -167,6 +170,13 @@ function () {
     }, {
       text: 'Flag icon',
       value: 'flagicon'
+    }];
+    this.stringDisplayOptions = [{
+      text: 'Value',
+      value: 'val'
+    }, {
+      text: 'Stealth mode',
+      value: 'stealth'
     }];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [{
