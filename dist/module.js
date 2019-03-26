@@ -160,6 +160,9 @@ function () {
     }, {
       text: 'Delta',
       value: 'delta'
+    }, {
+      text: 'Stealth mode',
+      value: 'stealth'
     }];
     this.countryDisplayOptions = [{
       text: 'ISO Code',
@@ -167,6 +170,13 @@ function () {
     }, {
       text: 'Flag icon',
       value: 'flagicon'
+    }];
+    this.stringDisplayOptions = [{
+      text: 'Value',
+      value: 'val'
+    }, {
+      text: 'Stealth mode',
+      value: 'stealth'
     }];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [{
@@ -1144,8 +1154,8 @@ function () {
       var icon = num > 0 ? 'up' : num < 0 ? 'down' : undefined;
       var colors = column.style.colors;
       var color = icon === 'up' ? colors[colors.length - 1] : icon === 'down' ? colors[0] : '#ffffff';
-      var html = "\n        <div class=\"arrow-container\" style=\"display:block;width:25px;height:25px;color:" + color + ";font-size:20px;line-height:25px;\">\n          <i class=\"grafana-tip fa fa-arrow-" + icon + "\"></i>\n          <span class=\"bidder-tooltip\">" + value + "</span>\n        </div>\n      ";
-      columnHtml = icon ? html : '-';
+      var html = "\n        <td style=\"padding:0;background-color:#212124;\">\n          <div class=\"arrow-container\" style=\"color:" + color + ";\">\n            <i class=\"grafana-tip fa fa-arrow-" + icon + "\"></i>\n            <span class=\"bidder-tooltip\">" + value + "</span>\n          </div>\n        </td>\n      ";
+      return icon ? html : '<td' + cellClass + cellStyle + textStyle + '></td>';
     }
 
     if (column.style && column.style.display === 'progressbar') {
@@ -1153,7 +1163,7 @@ function () {
       var pbarStyle = "display:block;width:" + value + ";max-width:100%;height:100%;padding:5px 0;background-color:" + color;
       columnHtml = "\n      <td style=\"padding:0;background-color:#212124;\">\n        <div style=\"" + pbarStyle + "\"><span style=\"padding-left:15px;\">" + value + "</span></div>\n      </td>";
     } else {
-      columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
+      columnHtml = column.style && column.style.display === 'stealth' ? "<td style=\"display:none;\">" + columnHtml + "</td>" : '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
     }
 
     return columnHtml;

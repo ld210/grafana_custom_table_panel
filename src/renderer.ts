@@ -314,13 +314,15 @@ export class TableRenderer {
       const color = icon === 'up' ? colors[colors.length - 1] : icon === 'down' ? colors[0] : '#ffffff';
 
       const html = `
-        <div class="arrow-container" style="display:block;width:25px;height:25px;color:${color};font-size:20px;line-height:25px;">
-          <i class="grafana-tip fa fa-arrow-${icon}"></i>
-          <span class="bidder-tooltip">${value}</span>
-        </div>
+        <td style="padding:0;background-color:#212124;">
+          <div class="arrow-container" style="color:${color};">
+            <i class="grafana-tip fa fa-arrow-${icon}"></i>
+            <span class="bidder-tooltip">${value}</span>
+          </div>
+        </td>
       `;
 
-      columnHtml = icon ? html : '-';
+      return icon ? html : '<td' + cellClass + cellStyle + textStyle + '></td>';
     }
 
     if (column.style && column.style.display === 'progressbar') {
@@ -332,7 +334,7 @@ export class TableRenderer {
         <div style="${pbarStyle}"><span style="padding-left:15px;">${value}</span></div>
       </td>`;
     } else {
-      columnHtml = '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
+      columnHtml = column.style && column.style.display === 'stealth' ? `<td style="display:none;">${columnHtml}</td>` : '<td' + cellClass + cellStyle + textStyle + '>' + columnHtml + '</td>';
     }
     return columnHtml;
   }

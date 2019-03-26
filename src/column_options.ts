@@ -9,6 +9,7 @@ export class ColumnOptionsCtrl {
   columnTypes: any;
   displayOptions: any;
   countryDisplayOptions: any;
+  stringDisplayOptions: any;
   fontSizes: any;
   dateFormats: any;
   addColumnSegment: any;
@@ -41,11 +42,16 @@ export class ColumnOptionsCtrl {
     this.displayOptions = [
       { text: 'Value', value: 'val' },
       { text: 'Progress Bar', value: 'progressbar' },
-      { text: 'Delta', value: 'delta' }
+      { text: 'Delta', value: 'delta' },
+      { text: 'Stealth mode', value: 'stealth'}
     ];
     this.countryDisplayOptions = [
       { text: 'ISO Code', value: 'iso' },
       { text: 'Flag icon', value: 'flagicon' }
+    ];
+    this.stringDisplayOptions = [
+      { text: 'Value', value: 'val' },
+      { text: 'Stealth mode', value: 'stealth'}
     ];
     this.fontSizes = ['80%', '90%', '100%', '110%', '120%', '130%', '150%', '160%', '180%', '200%', '220%', '250%'];
     this.dateFormats = [

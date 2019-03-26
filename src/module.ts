@@ -132,7 +132,6 @@ class TablePanelCtrl extends MetricsPanelCtrl {
       this.templateSrv,
       config.theme.type
     );
-
     return super.render(this.table);
   }
 
